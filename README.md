@@ -5,7 +5,7 @@ Coding example using the level API.
 ## Requirements
 
 - Node.js - This code example is intended to be run on the current stable version of
-Node.js (v6.9.1).  The package can be downloaded at the following [location](https://nodejs.org/en/download/){:target="_blank"}.
+Node.js (v6.9.1).  The package can be downloaded at the following <a href="https://nodejs.org/en/download/" target="_blank">location</a>.
 
 ## Installation
 
