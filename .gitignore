@@ -1,0 +1,13 @@
+# Ignore todo file.
+docs/todo.md
+
+# Ignore the configuration files.
+conf/settings.json
+
+# Ignore project files.
+NERD_tree_1
+[[buffergator-buffers]]
+.idea
+
+# Ignore node transient artifacts.
+node_modules
