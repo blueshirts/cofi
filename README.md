@@ -18,9 +18,15 @@ Node.js (v6.9.1).  The package can be downloaded at the following [location](htt
 
 1. Retrieve the monthly transaction averages by running the following command.
 
-    ./bin/run_monthly_averages.js -u interview@levelmoney.com -p password2
+    ./bin/run_monthly_averages.js -u <email-address> -p <password>
+
+2. Ignore donut related transactions by passing the -d or --ignore-donuts flag.
+
+    ./bin/run_monthly_averages.js -u <email-address> -p <password> --ignore-donuts
 
 ## Running the Test Cases.
+
+The mocha test cases can be run by executed by running the following steps.
 
 1. Install mocha globally.
 
