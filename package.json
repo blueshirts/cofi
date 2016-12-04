@@ -10,7 +10,7 @@
     "node"
   ],
   "author": "Anthony Milano",
-  "license": "ISC",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/blueshirts/cofi.git"
