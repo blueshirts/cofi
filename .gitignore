@@ -1,8 +1,9 @@
 # Ignore todo file.
 docs/todo.md
 
-# Ignore the configuration files.
-conf/settings.json
+# Ignore the configuration files. For simplicity I have checked
+# in the settings file though normally it would be ignored.
+# #conf/settings.json
 
 # Ignore project files.
 NERD_tree_1

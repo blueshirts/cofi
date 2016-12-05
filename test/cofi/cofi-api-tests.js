@@ -80,25 +80,13 @@ describe('cofi-api-tests', function() {
       const transactions = [
         {
           "amount": -111200,
-          "is-pending": false,
-          "aggregation-time": 1453075200000,
-          "account-id": "nonce:comfy-cc/hdhehe",
-          "clear-date": 1453195740000,
           "transaction-id": "1453195740000",
-          "raw-merchant": "Krispy Kreme Donuts",
-          "categorization": "Unknown",
           "merchant": "Krispy Kreme Donuts",
           "transaction-time": "2016-01-18T00:00:00.000Z"
         },
         {
           "amount": -76400,
-          "is-pending": false,
-          "aggregation-time": 1453161600000,
-          "account-id": "nonce:comfy-cc/hdhehe",
-          "clear-date": 1453214340000,
           "transaction-id": "1453214340000",
-          "raw-merchant": "DUNKIN #336784",
-          "categorization": "Unknown",
           "merchant": "Dunkin #336784",
           "transaction-time": "2016-01-19T00:00:00.000Z"
         }
@@ -111,11 +99,32 @@ describe('cofi-api-tests', function() {
       });
     });
     it('should ignore cc transactions', function() {
-      const transactions = [];
+      const transactions = [
+        {
+          "amount": -1000,
+          "transaction-id": "1453195740001",
+          "merchant": "CC Payment",
+          "transaction-time": "2016-01-18T00:00:00.000Z"
+        },
+        {
+          'amount': 1200,
+          'transaction-id': '1453214340002',
+          'merchant': 'Some Other Credit',
+          'transaction-time': '2016-01-18T12:00:00.000Z'
+        },
+        {
+          'amount': 1000,
+          'transaction-id': '1453214340003',
+          'merchant': 'CC Credit',
+          'transaction-time': '2016-01-19T00:00:00.000Z'
+        }
+      ];
+
       sinon.stub(cofi_api, 'get_all_transactions').returns(Promise.resolve(transactions));
 
       return cofi_api.get_monthly_averages(common_args, {ignore_cc_payments: true}).then( results => {
-        should_be_valid_monthly_result(results);
+        // There should be three keys in the result, the month, averages, and ignored.
+        should_be_valid_monthly_result(results, 3);
       });
     });
     it('should ignore cc transactions in the entire result', function() {
