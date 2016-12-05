@@ -6,8 +6,8 @@ describe('settings-tests', () => {
   it('should load and return settings', () => {
     let settings = require(`${ROOT}/lib/common/settings`);
     should.exist(settings);
-    should.exist(settings.api_url);
-    should.exist(settings.api_user);
-    should.exist(settings.api_pass);
+    should.exist(settings.url);
+    should.exist(settings.user);
+    should.exist(settings.pass);
   });
 });

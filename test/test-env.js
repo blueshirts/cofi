@@ -6,5 +6,8 @@ const should = chai.should();
 
 assert(should, '"should" should exist');
 
+const sinon = require('sinon');
+
 exports.char;
 exports.should = should;
+exports.sinon = sinon;
