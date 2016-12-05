@@ -56,12 +56,8 @@ describe('cofi-api-tests', function() {
       sinon.stub(cofi_api, 'get_all_transactions').returns(Promise.resolve());
 
       return cofi_api.get_monthly_averages(common_args).then( results => {
-        should.exist(results);
-        _.isObject(results).should.be.true;
         // There should be a single key in the result.
-        _.keys(results).length.should.equal(1);
-        // The key should be the average.
-        should.exist(results['average']);
+        should_be_valid_monthly_result(results, 1);
       });
     });
     it('should handle empty transactions', function() {
@@ -69,20 +65,14 @@ describe('cofi-api-tests', function() {
       sinon.stub(cofi_api, 'get_all_transactions').returns(Promise.resolve([]));
 
       return cofi_api.get_monthly_averages(common_args).then( results => {
-        should.exist(results);
-        _.isObject(results).should.be.true;
         // There should be a single key in the result.
-        _.keys(results).length.should.equal(1);
-        // The key should be the average.
-        should.exist(results['average']);
+        should_be_valid_monthly_result(results, 1);
       });
     });
     it('should calculate monthly averages from all transactions', function() {
       return cofi_api.get_monthly_averages(common_args).then( results => {
-        should.exist(results);
-        _.isObject(results).should.be.true;
+        should_be_valid_monthly_result(results);
         _.keys(results).length.should.be.greaterThan(0);
-        should.exist(results['average']);
       });
     });
     it('should ignore donut transactions', function() {
@@ -90,40 +80,74 @@ describe('cofi-api-tests', function() {
       const transactions = [
         {
           "amount": -111200,
-          "is-pending": false,
-          "aggregation-time": 1453075200000,
-          "account-id": "nonce:comfy-cc/hdhehe",
-          "clear-date": 1453195740000,
           "transaction-id": "1453195740000",
-          "raw-merchant": "Krispy Kreme Donuts",
-          "categorization": "Unknown",
           "merchant": "Krispy Kreme Donuts",
           "transaction-time": "2016-01-18T00:00:00.000Z"
         },
         {
           "amount": -76400,
-          "is-pending": false,
-          "aggregation-time": 1453161600000,
-          "account-id": "nonce:comfy-cc/hdhehe",
-          "clear-date": 1453214340000,
           "transaction-id": "1453214340000",
-          "raw-merchant": "DUNKIN #336784",
-          "categorization": "Unknown",
           "merchant": "Dunkin #336784",
           "transaction-time": "2016-01-19T00:00:00.000Z"
         }
       ];
       sinon.stub(cofi_api, 'get_all_transactions').returns(Promise.resolve(transactions));
 
-      return cofi_api.get_monthly_averages(common_args, {ignore_donuts: true}). then( results => {
-        should.exist(results);
-        _.isObject(results).should.be.true;
+      return cofi_api.get_monthly_averages(common_args, {ignore_donuts: true}).then( results => {
         // There should only be a single ke since the transactions are donut related.
-        _.keys(results).length.should.equal(1);
-        // The key should be the average.
-        should.exist(results['average']);
+        should_be_valid_monthly_result(results, 1);
+      });
+    });
+    it('should ignore cc transactions', function() {
+      const transactions = [
+        {
+          "amount": -1000,
+          "transaction-id": "1453195740001",
+          "merchant": "CC Payment",
+          "transaction-time": "2016-01-18T00:00:00.000Z"
+        },
+        {
+          'amount': 1200,
+          'transaction-id': '1453214340002',
+          'merchant': 'Some Other Credit',
+          'transaction-time': '2016-01-18T12:00:00.000Z'
+        },
+        {
+          'amount': 1000,
+          'transaction-id': '1453214340003',
+          'merchant': 'CC Credit',
+          'transaction-time': '2016-01-19T00:00:00.000Z'
+        }
+      ];
+
+      sinon.stub(cofi_api, 'get_all_transactions').returns(Promise.resolve(transactions));
+
+      return cofi_api.get_monthly_averages(common_args, {ignore_cc_payments: true}).then( results => {
+        // There should be three keys in the result, the month, averages, and ignored.
+        should_be_valid_monthly_result(results, 3);
+      });
+    });
+    it('should ignore cc transactions in the entire result', function() {
+      return cofi_api.get_monthly_averages(common_args, {ignore_cc_payments: true}).then( results => {
+        should_be_valid_monthly_result(results);
       });
     });
   });
 });
+
+/**
+ * Assert the monthly averages result.
+ */
+function should_be_valid_monthly_result(results, key_count = null) {
+  // The results should exist.
+  should.exist(results, '"results" should exist');
+  // The results should be an object.
+  _.isObject(results).should.be.true;
+  // The results should contain an average.
+  should.exist(results.average, '"average" key should exist');
+  if (key_count) {
+    // Validate the key count.
+    _.keys(results).length.should.equal(key_count);
+  }
+}
 
