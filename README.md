@@ -29,35 +29,35 @@ Usage: run_monthly_averages [options]
 
 1. Retrieve the monthly transaction averages by running the following command. The average for all
 months is stored in the result under the 'average' key.
-```
-    ./bin/run_monthly_averages.js -u <email-address> -p <password>
-```
-2. Ignore donut related transactions by passing the -d or --ignore-donuts flag.
-```
-    ./bin/run_monthly_averages.js -u <email-address> -p <password> --ignore-donuts
-```
-3. Ignore credit card related payment transactions by passing the -c or --ignore-cc-payments flag.
+    ```
+        ./bin/run_monthly_averages.js -u <email-address> -p <password>
+    ```
+1. Ignore donut related transactions by passing the -d or --ignore-donuts flag.
+    ```
+        ./bin/run_monthly_averages.js -u <email-address> -p <password> --ignore-donuts
+    ```
+1. Ignore credit card related payment transactions by passing the -c or --ignore-cc-payments flag.
 The ignored transactions are added to the result in the 'ignored' key.
-```
-    ./bin/run_monthly_averages.js -u <email-address> -p <password> --ignore-cc-payments
-```
-4. For additional help use the following command.
-```
-    ./bin/run_monthly_averages.js --help
-```
+    ```
+        ./bin/run_monthly_averages.js -u <email-address> -p <password> --ignore-cc-payments
+    ```
+1. For additional help use the following command.
+    ```
+        ./bin/run_monthly_averages.js --help
+    ```
 
 ## Running the Test Cases.
 
 The mocha test cases can be run by executed by running the following steps.
 
 1. Install mocha globally.
-```
-    sudo npm install -g mocha
-```
+    ```
+        sudo npm install -g mocha
+    ```
 1. Run the tests.
-```
-   mocha --recursive
-```
+    ```
+       mocha --recursive
+    ```
 
     cofi-api-tests
       #get_accounts()
@@ -74,6 +74,5 @@ The mocha test cases can be run by executed by running the following steps.
 
     settings-tests
       ✓ should load and return settings
-
-
-  9 passing (4s)
+  
+    9 passing (4s)
