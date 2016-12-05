@@ -32,16 +32,16 @@ months is stored in the result under the 'average' key.
     ```
         ./bin/run_monthly_averages.js -u <email-address> -p <password>
     ```
-1. Ignore donut related transactions by passing the -d or --ignore-donuts flag.
+2. Ignore donut related transactions by passing the -d or --ignore-donuts flag.
     ```
         ./bin/run_monthly_averages.js -u <email-address> -p <password> --ignore-donuts
     ```
-1. Ignore credit card related payment transactions by passing the -c or --ignore-cc-payments flag.
+3. Ignore credit card related payment transactions by passing the -c or --ignore-cc-payments flag.
 The ignored transactions are added to the result in the 'ignored' key.
     ```
         ./bin/run_monthly_averages.js -u <email-address> -p <password> --ignore-cc-payments
     ```
-1. For additional help use the following command.
+4. For additional help use the following command.
     ```
         ./bin/run_monthly_averages.js --help
     ```
@@ -54,7 +54,7 @@ The mocha test cases can be run by executed by running the following steps.
     ```
         sudo npm install -g mocha
     ```
-1. Run the tests.
+2. Run the tests.
     ```
        mocha --recursive
     ```
