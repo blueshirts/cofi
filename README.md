@@ -74,6 +74,5 @@ The mocha test cases can be run by executed by running the following steps.
 
     settings-tests
       ✓ should load and return settings
-
-
-  9 passing (4s)
+  
+    9 passing (4s)
