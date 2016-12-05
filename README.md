@@ -4,15 +4,23 @@ Coding example using the level API.
 
 ## Requirements
 
+- Git - Install a github client (https://git-scm.com/downloads) to download the code.
 - Node.js - This code example is intended to be run on the current stable version of
 Node.js (v6.9.1).  The package can be downloaded at the following <a href="https://nodejs.org/en/download/" target="_blank">location</a>.
 
 ## Installation
 
 1. Install Node.js using the required program installer (see requirements).
+1. Download the code.
+
+    ```
+    git clone https://github.com/blueshirts/cofi
+    cd cofi
+    ```
 1. Install the dependencies:
 
     npm install
+1. You should now be able to run the examples below.
 
 ## Running Examples from the Command Line.
 
