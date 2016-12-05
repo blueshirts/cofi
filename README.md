@@ -18,6 +18,7 @@ Node.js (v6.9.1).  The package can be downloaded at the following <a href="https
 
 Usage: run_monthly_averages [options]
 
+    ```
     Options:
 
       -h, --help               output usage information
@@ -26,39 +27,47 @@ Usage: run_monthly_averages [options]
       -p  --pass <s>           Users password
       -d --ignore-donuts       Ignore donut related transactions.
       -c --ignore-cc-payments  Ignore credit card payment transactions.
-
+    ```
+    
 1. Retrieve the monthly transaction averages by running the following command. The average for all
 months is stored in the result under the 'average' key.
 
+    ```
     ./bin/run_monthly_averages.js -u <email-address> -p <password>
-
-1. Ignore donut related transactions by passing the -d or --ignore-donuts flag.
-
+    ```
+2. Ignore donut related transactions by passing the -d or --ignore-donuts flag.
+    
+    ```
     ./bin/run_monthly_averages.js -u <email-address> -p <password> --ignore-donuts
-
-1. Ignore credit card related payment transactions by passing the -c or --ignore-cc-payments flag.
+    ```
+3. Ignore credit card related payment transactions by passing the -c or --ignore-cc-payments flag.
 The ignored transactions are added to the result in the 'ignored' key.
-
+    
+    ```
     ./bin/run_monthly_averages.js -u <email-address> -p <password> --ignore-cc-payments
+    ```
+4. For additional help use the following command.
 
-1. For additional help use the following command.
-
+    ```
     ./bin/run_monthly_averages.js --help
+    ```
 
 ## Running the Test Cases.
 
 The mocha test cases can be run by executed by running the following steps.
 
 1. Install mocha globally.
-
-
+    
+    ```
     sudo npm install -g mocha
+    ```
+1. Run the tests.
+    
+    ```
+   mocha --recursive
+    ```
 
-2. Run the tests.
-
-
-    mocha --recursive
-
+    ```
     cofi-api-tests
       #get_accounts()
         ✓ should retrieve accounts (208ms)
@@ -76,4 +85,5 @@ The mocha test cases can be run by executed by running the following steps.
       ✓ should load and return settings
   
     9 passing (4s)
+    ```
 
