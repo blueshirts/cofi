@@ -24,6 +24,15 @@ Node.js (v6.9.1).  The package can be downloaded at the following <a href="https
 ```
     ./bin/run_monthly_averages.js -u <email-address> -p <password> --ignore-donuts
 ```
+3. Ignore credit card related payment transactions by passing the -c or --ignore-cc-payments flag.
+```
+    ./bin/run_monthly_averages.js -u <email-address> -p <password> --ignore-cc-payments
+```
+4. For additional help use the following command.
+```
+    ./bin/run_monthly_averages.js --help
+```
+
 ## Running the Test Cases.
 
 The mocha test cases can be run by executed by running the following steps.
